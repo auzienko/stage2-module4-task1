@@ -9,15 +9,13 @@ public class ThreadSafeSingleton {
     }
 
     public static ThreadSafeSingleton getInstance() {
-        ThreadSafeSingleton result = instance;
-        if (result == null) {
+        if (instance == null) {
             synchronized (mutex) {
-                result = instance;
-                if (result == null) {
-                    result = instance = new ThreadSafeSingleton();
+                if (instance == null) {
+                    instance = new ThreadSafeSingleton();
                 }
             }
         }
-        return result;
+        return instance;
     }
 }
